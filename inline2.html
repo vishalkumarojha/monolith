@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: #ffffff;
+        }
+        main {
+            width: min(1200px, 90vw);
+            margin: auto;
+        }
+        
+        .slider {
+            width: 100%;
+            height: var(--height);
+            overflow: hidden;
+            mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+        }
+        .slider .list {
+            display: flex;
+            width: 100%;
+            min-width: calc(var(--width) * var(--quantity));
+            position: relative;
+        }
+        .slider .list .item {
+            width: var(--width);
+            height: var(--height);
+            position: absolute;
+            left: 100%;
+            animation: autoRun 10s linear infinite;
+            transition: filter 0.5s;
+            animation-delay: calc((10s / var(--quantity)) * (var(--position) - 1)) !important;
+        }
+        .slider .list .item .flip-card {
+            width: 100%;
+            height: 100%;
+            perspective: 1000px;
+        }
+        .slider .list .item .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transform: rotateY(0deg);
+        }
+        .slider .list .item .flip-card-inner.flipped {
+            transform: rotateY(180deg);
+        }
+        .slider .list .item .flip-card-front, .slider .list .item .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+        }
+        .slider .list .item .flip-card-front {
+            background-color: #bbb;
+            color: black;
+        }
+        .slider .list .item .flip-card-back {
+            background-color: rgb(0, 0, 0);
+            color: white;
+            transform: rotateY(180deg);
+        }
+        @keyframes autoRun {
+            from {
+                left: 100%;
+            }
+            to {
+                left: calc(var(--width) * -1);
+            }
+        }
+        .slider:hover .item {
+            animation-play-state: paused !important;
+            filter: grayscale(1);
+        }
+        .slider .item:hover {
+            filter: grayscale(0);
+        }
+        .slider[reverse="true"] .item {
+            animation: reversePlay 10s linear infinite;
+        }
+        @keyframes reversePlay {
+            from {
+                left: calc(var(--width) * -1);
+            }
+            to {
+                left: 100%;
+            }
+        }
+        .it-img {
+            width: 100%;
+            height: 100%;
+        }
+        .description {
+            padding: 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="slider" reverse="true" style="
+            --width: 250px;
+            --height: 250px;
+            --quantity: 6;
+        ">
+            <div class="list">
+                <div class="item" style="--position: 1">
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img class="it-img" src="https://pbs.twimg.com/profile_images/1364936684958142464/k18b5LN3_400x400.jpg" alt="Image 1">
+                            </div>
+                            <div class="flip-card-back">
+                                <div class="description"><p> Software Developer </p> <p> Skills - Mandatory </p> <p> HTML, CSS, Javascript, ReactJS </p> <p> 11 LPA - 20 LPA   </p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item" style="--position: 2">
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img class="it-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjUASmjenwPCYzaF-ohrvg79C9IaOGxA9s_g&s" alt="Image 2">
+                            </div>
+                            <div class="flip-card-back">
+                                <div class="description"><p>  Software Engineer </p> <p> Skills - Mandatory </p> <p>Selenium, AP </p> <p> 4.5 LPA - 7 LPA  </p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item" style="--position: 3">
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img class="it-img" src="https://vitbhopal.ac.in/wp-content/uploads/2020/01/avp-1.jpg" alt="Image 3">
+                            </div>
+                            <div class="flip-card-back">
+                                <div class="description"> <p>  ML Engineer  </p> <p> Skills - Mandatory </p> <p>Python, SQL,tableau , MLOps </p> <p> 21 LPA - 28 LPA  </p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item" style="--position: 4">
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img class="it-img" src="https://pbs.twimg.com/profile_images/1674381752641650689/xPDgDEbK_400x400.jpg" alt="Image 4">
+                            </div>
+                            <div class="flip-card-back">
+                                <div class="description"> <p> Data Analyst  </p> <p> Skills - Mandatory </p> <p>Python, SQL </p> <p> 22 LPA - 39 LPA </p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item" style="--position: 5">
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img class="it-img" src="https://www.coderslive.tech/_next/image?url=https%3A%2F%2Fhide-rest.pockethost.io%2Fapi%2Ffiles%2Fusers%2Ftl4uzx5ltwbcizu%2Fmy_profile_picture_lv49Z8mM9g.png&w=256&q=75" alt="Image 5">
+                            </div>
+                            <div class="flip-card-back">
+                                <div class="description"> <p>  Frontend Developer Job  </p> <p> Skills - Mandatory </p> <p>React Js,React Native, Javascript </p> <p> 7 LPA - 12 LPA </p> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item" style="--position: 6">
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img class="it-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4OfcZ9ooyXVGGMwXMvLD28S3jClLiQ8Md_eeOecuairIgiMAhOyUDEEIct5NF4l8-3_U&usqp=CAU" alt="Image 6">
+                            </div>
+                            <div class="flip-card-back">
+                                <div class="description"><p>  Fullstack Developer Job </p> <p> Skills - Mandatory </p> <p> NextJs,Javascript,MongoDB </p> <p> 4 LPA - 6 LPA</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </main>
+    
+</body>
+</html>
